@@ -17,10 +17,7 @@ void print(std::vector<int> const &input)
 
 int main(){
 	
-				/* Dados da instância */
-	
-	cout << "Commit teste" << endl;
-	
+	/* Dados da instância */
 	
 	// Coordenadas x de cada nó i da instância
 	vector <double> x {25.0, 19.942, 13.131, 41.105, 29.622, 20.387, 8.195, 39.947, 32.184, 46.07, 15.395, 38.336, 49.706, 17.748, 42.549, 44.178, 26.591, 3.855, 37.401, 45.989, 35.511, 39.026, 28.364, 40.399, 42.439, 48.019, 35.573, 36.158, 43.76, 13.387, 21.442, 4.515, 14.379, 17.381, 43.627, 0.062, 42.389, 6.799, 24.429, 44.972, 30.09, 17.571, 30.378, 20.594, 19.93, 5.808, 0.497, 43.952, 13.843, 19.524, 30.948, 25.0};
@@ -61,7 +58,8 @@ int main(){
 		}
 	}
 	
-				/* Criando variáveis com valores atualizados a cada inserção */
+	
+	/* Criando variáveis com valores atualizados a cada inserção */
 	
 	// Pedidos não atendidos
 	vector <int> L (n, 0);
@@ -75,7 +73,10 @@ int main(){
 	// Quantidade de requests atendidos (inicia-se em 0)
 	int qtd_atendidos {0};
 	
-	// Início do processo de inserção, que se finda quando todos os pedidos são atendidos
+	
+	/* Início do processo de inserção, que se finda quando todos os pedidos são atendidos */
+	
+	
 	while (qtd_atendidos < n){
 		
 		// Variável que abrigará o request a ser inserido na iteração
@@ -92,7 +93,6 @@ int main(){
 		
 		// Vetor de duas dimensões que guardará a rota correspondente ao delta mínimo para cada rota presente na solução
 		vector <vector<int>> rotas_delta_minimo;
-		
 		
 		// Variável que controlará o número de rotas factíveis encontradas
 		int num_rotas_factiveis {0};
@@ -114,8 +114,6 @@ int main(){
 				
 				for (unsigned pos_insercao_no_delivery {1}; pos_insercao_no_delivery < rota.size() + 1; pos_insercao_no_delivery++){
 					
-					
-					//cout << pos_insercao_no_pickup << " " << pos_insercao_no_delivery << endl;
 					// Testando apenas índices de inserção válidos: índice de delivery maior do que o de pickup (precedence) e diferente dele!
 					// A iteração começa em 1 e termina no tamanho da rota porque não se considera a primeira e última posição da rota, que são o depósito
 					if ((pos_insercao_no_pickup != pos_insercao_no_delivery) and (pos_insercao_no_pickup < pos_insercao_no_delivery)){
@@ -150,7 +148,6 @@ int main(){
 							int no_seguinte {rota_teste.at(index_rota_teste)};
 							
 							// Checando se ir do no atual para o nó seguinte irá violar as restrições de capacidade e time window
-							
 							if ((cap_atual + q.at(no_seguinte) > Cap) || (l.at(no_seguinte) < t_atual + t.at(no_atual).at(no_seguinte))){
 								
 								// Atribuindo valor falso para a variável de factibilidade e quebrando o laço for
@@ -158,7 +155,6 @@ int main(){
 								break;
 								
 							// Caso seja possível, os valores são atualizados
-							
 							} else {
 								// Atualizando valores
 								
@@ -168,18 +164,15 @@ int main(){
 								// Tempo
 								// Caso haja adiantamento (tempo de chegada menor que a janela de tempo de abertura)
 								if (t_atual + t.at(no_atual).at(no_seguinte) < e.at(no_seguinte)){
-									
 									t_atual = e.at(no_seguinte);
 									
 								} else {
-									
 									t_atual += t.at(no_atual).at(no_seguinte);
 									
 								}
 							}
 						}
 						// Caso a solução seja factível, calcula-se o delta
-						
 						if (factivel){
 							
 							// Incrementando número de rotas factíveis encontradas para a rota da iteração
@@ -210,13 +203,9 @@ int main(){
 					}
 				}
 			}
-			
 			// Guardando valores de delta mínimo e rota correspondente
-			
 			deltas_minimos.push_back(delta_minimo);
 			rotas_delta_minimo.push_back(rota_delta_minimo);
-			
-			
 			
 		}
 		// Checando qual das rotas teve o menor incremento na função objetivo
@@ -229,36 +218,28 @@ int main(){
 			
 			S.at(indice_rota_delta_minimo) = rota_delta_minimo;
 			
-			
 		// Caso contrário, isso significará que não foram encontradas posições de inserção factíveis para as rotas em questão
 		// fazendo-se necessária uma nova rota
 		
 		} else {
-			
 			// Rota vazia com os nós da iteração
 			vector <int> nova_rota {0, no_pickup, no_delivery, 2*n + 1};
 			S.push_back(nova_rota);
-			
 		}
-		
 		// Atualizando quantidade de pedidos atendidos
 		qtd_atendidos += 1;
 		
 		// Removendo pedido de L
 		L.erase(L.begin());
 		
-		
 	}
 	
-	// Printando solução
 	
+	// Printando solução
 	for (unsigned index_rota {0}; index_rota < S.size(); index_rota++){
-		
 		print(S[index_rota]);
 		cout << '\n';
 	}
-	
-	cout << '\n';
 	
 	return 0;
 }
