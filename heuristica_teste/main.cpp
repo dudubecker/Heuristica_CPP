@@ -14,7 +14,6 @@ void print(std::vector<int> const &input)
     }
 }
 
-
 int main(){
 	
 	/* Dados da instância */
@@ -58,7 +57,6 @@ int main(){
 		}
 	}
 	
-	
 	/* Criando variáveis com valores atualizados a cada inserção */
 	
 	// Pedidos não atendidos
@@ -73,9 +71,7 @@ int main(){
 	// Quantidade de requests atendidos (inicia-se em 0)
 	int qtd_atendidos {0};
 	
-	
 	/* Início do processo de inserção, que se finda quando todos os pedidos são atendidos */
-	
 	
 	while (qtd_atendidos < n){
 		
@@ -234,8 +230,8 @@ int main(){
 		
 	}
 	
+	/* Printando solução */
 	
-	// Printando solução
 	for (unsigned index_rota {0}; index_rota < S.size(); index_rota++){
 		print(S[index_rota]);
 		cout << '\n';
