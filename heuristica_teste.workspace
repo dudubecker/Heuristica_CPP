@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeLite_Workspace Name="heuristica_teste" Database="" Version="10000">
+  <Project Name="heuristica_teste" Path="heuristica_teste/heuristica_teste.project" Active="Yes"/>
+  <Project Name="testes_codigos" Path="testes_codigos/testes_codigos.project" Active="No"/>
+  <BuildMatrix>
+    <WorkspaceConfiguration Name="Debug" Selected="yes">
+      <Environment/>
+      <Project Name="heuristica_teste" ConfigName="Debug"/>
+      <Project Name="testes_codigos" ConfigName="Debug"/>
+    </WorkspaceConfiguration>
+    <WorkspaceConfiguration Name="Release" Selected="yes">
+      <Environment/>
+      <Project Name="heuristica_teste" ConfigName="Release"/>
+      <Project Name="testes_codigos" ConfigName="Release"/>
+    </WorkspaceConfiguration>
+  </BuildMatrix>
+</CodeLite_Workspace>
